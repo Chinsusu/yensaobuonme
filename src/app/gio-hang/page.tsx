@@ -1,63 +1,37 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatPrice } from '@/lib/utils';
 import { TrashIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
-
-// Mock cart data - in real app, use context/state management
-const mockCartItems = [
-    {
-        product_id: 1,
-        name: 'Tổ yến sào cao cấp 100g',
-        slug: 'to-yen-sao-cao-cap-100g',
-        price: '5500000',
-        image: null,
-        quantity: 1,
-        subtotal: 5500000,
-        in_stock: true,
-    },
-    {
-        product_id: 2,
-        name: 'Tổ yến sào cao cấp 50g',
-        slug: 'to-yen-sao-cao-cap-50g',
-        price: '2800000',
-        image: null,
-        quantity: 2,
-        subtotal: 5600000,
-        in_stock: true,
-    },
-];
+import { useCart } from '@/hooks/useCart';
 
 export default function CartPage() {
-    const [cartItems, setCartItems] = useState(mockCartItems);
+    const { items: cartItems, updateQuantity, removeItem, subtotal, isLoaded } = useCart();
 
-    const subtotal = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
     const freeShippingThreshold = 500000;
     const shippingFee = subtotal >= freeShippingThreshold ? 0 : 30000;
     const total = subtotal + shippingFee;
     const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
-    const updateQuantity = (productId: number, delta: number) => {
-        setCartItems(prev =>
-            prev.map(item => {
-                if (item.product_id === productId) {
-                    const newQty = Math.max(1, Math.min(99, item.quantity + delta));
-                    return {
-                        ...item,
-                        quantity: newQty,
-                        subtotal: parseFloat(item.price) * newQty,
-                    };
-                }
-                return item;
-            })
+    if (!isLoaded) {
+        return (
+            <div className="bg-gray-50 min-h-screen py-8">
+                <div className="container mx-auto px-4">
+                    <div className="animate-pulse">
+                        <div className="h-10 bg-gray-200 rounded w-48 mb-8"></div>
+                        <div className="grid lg:grid-cols-3 gap-8">
+                            <div className="lg:col-span-2 space-y-4">
+                                <div className="h-32 bg-gray-200 rounded-2xl"></div>
+                                <div className="h-32 bg-gray-200 rounded-2xl"></div>
+                            </div>
+                            <div className="h-64 bg-gray-200 rounded-2xl"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
-    };
-
-    const removeItem = (productId: number) => {
-        setCartItems(prev => prev.filter(item => item.product_id !== productId));
-    };
+    }
 
     return (
         <div className="bg-gray-50 min-h-screen py-8">
@@ -106,14 +80,14 @@ export default function CartPage() {
                                             {/* Quantity */}
                                             <div className="flex items-center border rounded-lg">
                                                 <button
-                                                    onClick={() => updateQuantity(item.product_id, -1)}
+                                                    onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
                                                     className="p-2 hover:bg-gray-100 transition-colors"
                                                 >
                                                     <MinusIcon className="w-4 h-4" />
                                                 </button>
                                                 <span className="px-4 py-2 border-x min-w-[50px] text-center">{item.quantity}</span>
                                                 <button
-                                                    onClick={() => updateQuantity(item.product_id, 1)}
+                                                    onClick={() => updateQuantity(item.product_id, item.quantity + 1)}
                                                     className="p-2 hover:bg-gray-100 transition-colors"
                                                 >
                                                     <PlusIcon className="w-4 h-4" />
@@ -122,7 +96,9 @@ export default function CartPage() {
 
                                             {/* Subtotal & Remove */}
                                             <div className="flex items-center gap-4">
-                                                <span className="font-bold text-gray-800">{formatPrice(item.subtotal)}</span>
+                                                <span className="font-bold text-gray-800">
+                                                    {formatPrice(parseFloat(item.price) * item.quantity)}
+                                                </span>
                                                 <button
                                                     onClick={() => removeItem(item.product_id)}
                                                     className="p-2 text-gray-400 hover:text-red-500 transition-colors"
@@ -143,7 +119,7 @@ export default function CartPage() {
 
                                 <div className="space-y-3 text-gray-600">
                                     <div className="flex justify-between">
-                                        <span>Tạm tính ({cartItems.length} sản phẩm)</span>
+                                        <span>Tạm tính ({cartItems.reduce((acc, i) => acc + i.quantity, 0)} sản phẩm)</span>
                                         <span className="font-medium text-gray-800">{formatPrice(subtotal)}</span>
                                     </div>
                                     <div className="flex justify-between">

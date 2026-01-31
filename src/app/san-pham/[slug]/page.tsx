@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import ProductCard from '@/components/products/ProductCard';
 import JsonLd from '@/components/seo/JsonLd';
 import { generateProductSchema, generateBreadcrumbSchema } from '@/lib/seo';
+import AddToCartButton from '@/components/products/AddToCartButton';
 
 interface PageProps {
     params: { slug: string };
@@ -195,24 +196,16 @@ export default async function ProductDetailPage({ params }: PageProps) {
                             </div>
 
                             {/* Quantity & Add to cart */}
-                            <div className="flex items-center gap-4">
-                                <div className="flex items-center border rounded-lg">
-                                    <button className="px-4 py-3 hover:bg-gray-100 transition-colors">-</button>
-                                    <input
-                                        type="number"
-                                        defaultValue={1}
-                                        min={1}
-                                        className="w-16 text-center py-3 border-x outline-none"
-                                    />
-                                    <button className="px-4 py-3 hover:bg-gray-100 transition-colors">+</button>
-                                </div>
-                                <button
-                                    className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                                    disabled={product.stock_quantity <= 0}
-                                >
-                                    {product.stock_quantity > 0 ? 'Thêm vào giỏ hàng' : 'Hết hàng'}
-                                </button>
-                            </div>
+                            <AddToCartButton
+                                product={{
+                                    product_id: product.id,
+                                    name: product.name,
+                                    slug: product.slug,
+                                    price: product.price,
+                                    image: product.images?.[0]?.url || null,
+                                }}
+                                disabled={product.stock_quantity <= 0}
+                            />
 
                             {/* Benefits */}
                             <div className="grid grid-cols-2 gap-4 pt-6 border-t">

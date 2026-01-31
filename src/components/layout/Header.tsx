@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { ShoppingCartIcon, Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { useCartCount } from '@/hooks/useCart';
 
 const navigation = [
     { name: 'Trang chủ', href: '/' },
@@ -15,6 +16,7 @@ const navigation = [
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const { count: cartCount, isLoaded: cartLoaded } = useCartCount();
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
@@ -71,9 +73,11 @@ export default function Header() {
                             className="relative p-2 text-gray-600 hover:text-amber-600 transition-colors"
                         >
                             <ShoppingCartIcon className="w-6 h-6" />
-                            <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">
-                                0
-                            </span>
+                            {cartLoaded && cartCount > 0 && (
+                                <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">
+                                    {cartCount > 99 ? '99+' : cartCount}
+                                </span>
+                            )}
                         </Link>
 
                         {/* Mobile menu button */}
