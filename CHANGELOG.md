@@ -41,12 +41,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product detail page with gallery, pricing, add to cart
 - Cart page with quantity controls, free shipping progress
 - Checkout page with customer form, address, payment method
+- Order success confirmation page
+- Blog listing with featured post layout
+- Blog detail with tags, share buttons
+- About page with story, values, stats, team sections
+- Contact page with form, info, map placeholder
+- Dynamic static pages (policies, shipping, payment guides)
 - Header component (navigation, search, cart, mobile menu)
 - Footer component (newsletter, links, contact)
-- ProductCard component with hover effects, badges
+- ProductCard, SortSelect components
 - Premium amber/gold theme design
 - Responsive mobile-first design
 - SEO metadata configuration
+- **Total: 11 routes, 15+ components**
 
 ## [0.3.0] - 2026-01-31 (Phase 2 - API)
 
