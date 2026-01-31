@@ -1,5 +1,6 @@
 import { getProducts, getCategories } from '@/lib/api';
 import ProductCard from '@/components/products/ProductCard';
+import SortSelect from '@/components/products/SortSelect';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -102,21 +103,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
                             </p>
                             <div className="flex items-center gap-2">
                                 <label className="text-sm text-gray-600">Sắp xếp:</label>
-                                <select
-                                    defaultValue={sort}
-                                    className="px-3 py-2 border rounded-lg text-sm focus:border-amber-500 outline-none"
-                                    onChange={(e) => {
-                                        const url = new URL(window.location.href);
-                                        url.searchParams.set('sort', e.target.value);
-                                        window.location.href = url.toString();
-                                    }}
-                                >
-                                    {sortOptions.map((opt) => (
-                                        <option key={opt.value} value={opt.value}>
-                                            {opt.label}
-                                        </option>
-                                    ))}
-                                </select>
+                                <SortSelect currentSort={sort} options={sortOptions} />
                             </div>
                         </div>
 
@@ -155,8 +142,8 @@ export default async function ProductsPage({ searchParams }: PageProps) {
                                             page: p.toString(),
                                         }).toString()}`}
                                         className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${p === page
-                                                ? 'bg-amber-500 text-white'
-                                                : 'bg-white hover:bg-amber-100'
+                                            ? 'bg-amber-500 text-white'
+                                            : 'bg-white hover:bg-amber-100'
                                             }`}
                                     >
                                         {p}
