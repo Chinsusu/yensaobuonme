@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
@@ -96,6 +97,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
