@@ -1,101 +1,168 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { getCategories, getFeaturedProducts } from '@/lib/api';
+import ProductCard from '@/components/products/ProductCard';
 
-export default function Home() {
+export default async function HomePage() {
+  const [categoriesRes, featuredRes] = await Promise.all([
+    getCategories().catch(() => ({ success: false, data: [] })),
+    getFeaturedProducts().catch(() => ({ success: false, data: [] })),
+  ]);
+
+  const categories = categoriesRes.data || [];
+  const featuredProducts = featuredRes.data || [];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 overflow-hidden">
+        <div className="absolute inset-0 bg-pattern opacity-50" />
+        <div className="container mx-auto px-4 py-16 md:py-24 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 text-center lg:text-left">
+              <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
+                🏆 100% Nguyên chất từ Khánh Hòa
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+                Tinh hoa <span className="text-gradient">Yến Sào</span>
+                <br />từ đảo Hòn Nội
+              </h1>
+              <p className="text-lg text-gray-600 max-w-xl mx-auto lg:mx-0">
+                Yến sào cao cấp được thu hoạch từ thiên nhiên, đảm bảo 100% nguyên chất.
+                Nguồn gốc rõ ràng, chất lượng vượt trội.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link href="/san-pham" className="btn-primary">
+                  Khám phá sản phẩm
+                </Link>
+                <Link href="/gioi-thieu" className="btn-outline">
+                  Tìm hiểu thêm
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="w-80 h-80 md:w-96 md:h-96 mx-auto bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl">
+                <div className="text-center text-white">
+                  <div className="text-8xl mb-4">🥚</div>
+                  <p className="text-xl font-semibold">Premium Quality</p>
+                </div>
+              </div>
+              {/* Floating badges */}
+              <div className="absolute top-10 -left-4 bg-white p-4 rounded-xl shadow-lg animate-bounce">
+                <span className="text-2xl">✨</span>
+                <p className="text-sm font-medium">100% Tự nhiên</p>
+              </div>
+              <div className="absolute bottom-10 -right-4 bg-white p-4 rounded-xl shadow-lg animate-bounce delay-100">
+                <span className="text-2xl">🚚</span>
+                <p className="text-sm font-medium">Giao hàng nhanh</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Categories Section */}
+      {categories.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="section-title">Danh mục sản phẩm</h2>
+            <p className="section-subtitle">
+              Khám phá các dòng sản phẩm yến sào cao cấp của chúng tôi
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+              {categories.slice(0, 4).map((category) => (
+                <Link
+                  key={category.id}
+                  href={`/san-pham?category=${category.slug}`}
+                  className="group relative bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all"
+                >
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <span className="text-3xl text-white">🥚</span>
+                  </div>
+                  <h3 className="font-semibold text-gray-800 group-hover:text-amber-600 transition-colors">
+                    {category.name}
+                  </h3>
+                  {category.children && category.children.length > 0 && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      {category.children.length} danh mục con
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Featured Products */}
+      {featuredProducts.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="section-title">Sản phẩm nổi bật</h2>
+            <p className="section-subtitle">
+              Những sản phẩm bán chạy và được yêu thích nhất
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+              {featuredProducts.slice(0, 8).map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link href="/san-pham" className="btn-primary">
+                Xem tất cả sản phẩm
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Why Choose Us */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="section-title">Tại sao chọn chúng tôi?</h2>
+          <div className="grid md:grid-cols-4 gap-8 mt-10">
+            {[
+              { icon: '🏆', title: '100% Nguyên chất', desc: 'Yến sào được thu hoạch từ thiên nhiên, không pha trộn' },
+              { icon: '🔬', title: 'Kiểm định chất lượng', desc: 'Đạt tiêu chuẩn an toàn vệ sinh thực phẩm' },
+              { icon: '🚚', title: 'Giao hàng toàn quốc', desc: 'Miễn phí vận chuyển cho đơn từ 500.000đ' },
+              { icon: '💯', title: 'Cam kết hoàn tiền', desc: 'Hoàn tiền 100% nếu không hài lòng' },
+            ].map((item) => (
+              <div key={item.title} className="text-center p-6">
+                <div className="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center text-3xl mb-4">
+                  {item.icon}
+                </div>
+                <h3 className="font-semibold text-gray-800 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Bạn cần tư vấn?
+          </h2>
+          <p className="text-amber-100 mb-8 max-w-xl mx-auto">
+            Đội ngũ chuyên viên của chúng tôi sẵn sàng hỗ trợ bạn 24/7
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="tel:0909123456"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-amber-600 font-semibold rounded-full hover:bg-gray-100 transition-colors"
+            >
+              📞 0909.123.456
+            </a>
+            <a
+              href="https://zalo.me/0909123456"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
+            >
+              Chat Zalo
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
