@@ -4,58 +4,75 @@ import {
     HandRaisedIcon,
 } from '@heroicons/react/24/outline';
 
-const features = [
+const usps = [
     {
         icon: MapPinIcon,
         title: 'Nguồn gốc rõ ràng',
-        description:
-            'Trực tiếp từ trang trại Hòn Nội, Khánh Hòa. Mỗi sản phẩm đều có truy xuất nguồn gốc rõ ràng.',
+        description: 'Trực tiếp từ trang trại yến tại Hòn Nội, Khánh Hòa. Quy trình nuôi yến tự nhiên, không can thiệp hóa chất.',
     },
     {
         icon: ShieldCheckIcon,
         title: 'Chất lượng đảm bảo',
-        description:
-            '100% nguyên chất, không tẩy trắng, không hóa chất. Có chứng nhận ATTP và kiểm định định kỳ.',
+        description: '100% tổ yến thật, không tẩy trắng. Có chứng nhận ATTP, kiểm định chất lượng bởi cơ quan có thẩm quyền.',
     },
     {
         icon: HandRaisedIcon,
         title: 'Quy trình thủ công',
-        description:
-            'Thu hoạch và chế biến thủ công 100%. Đảm bảo giữ nguyên giá trị dinh dưỡng cao nhất.',
+        description: 'Thu hoạch và chế biến thủ công 100%. Chỉ thu hoạch khi tổ yến đủ già, đảm bảo giá trị dinh dưỡng cao nhất.',
     },
 ];
 
 export default function WhyChooseUs() {
     return (
-        <section className="py-16 md:py-20" style={{ backgroundColor: '#F5F5DC' }}>
-            <div className="container mx-auto px-4">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4">
+        <section
+            className="py-20"
+            style={{ backgroundColor: '#F5F5DC' }}
+            aria-labelledby="why-choose-us-heading"
+        >
+            <div className="container mx-auto">
+                {/* Section header */}
+                <h2
+                    id="why-choose-us-heading"
+                    className="section-title mb-16"
+                >
                     Tại sao khách hàng tin tưởng chúng tôi
                 </h2>
-                <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-                    Với hơn 20 năm kinh nghiệm, chúng tôi cam kết mang đến sản phẩm yến sào chất lượng nhất
-                </p>
 
-                <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-                    {features.map((feature, index) => (
-                        <div
-                            key={index}
-                            className="bg-white rounded-2xl p-8 text-center shadow-sm hover:shadow-lg transition-shadow"
-                        >
+                {/* 12-column grid: 3 items × 4 columns each */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                    {usps.map((usp, index) => {
+                        const Icon = usp.icon;
+                        return (
                             <div
-                                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6"
-                                style={{ backgroundColor: 'rgba(139, 69, 19, 0.1)' }}
+                                key={index}
+                                className="flex flex-col items-center text-center px-4"
                             >
-                                <feature.icon className="w-8 h-8" style={{ color: '#8B4513' }} />
+                                {/* Icon - 80x80 */}
+                                <div
+                                    className="w-20 h-20 flex items-center justify-center mb-6"
+                                    style={{ color: '#8B4513' }}
+                                >
+                                    <Icon className="w-16 h-16" aria-hidden="true" />
+                                </div>
+
+                                {/* Title */}
+                                <h3
+                                    className="text-xl font-bold mb-4"
+                                    style={{ color: '#8B4513' }}
+                                >
+                                    {usp.title}
+                                </h3>
+
+                                {/* Description */}
+                                <p
+                                    className="text-base leading-relaxed"
+                                    style={{ color: '#666666', lineHeight: '1.7' }}
+                                >
+                                    {usp.description}
+                                </p>
                             </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                {feature.title}
-                            </h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                {feature.description}
-                            </p>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

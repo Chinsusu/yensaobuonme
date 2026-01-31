@@ -1,22 +1,20 @@
-'use client';
-
 import {
-    ShieldCheckIcon,
+    CheckCircleIcon,
+    TrophyIcon,
     TruckIcon,
-    ClockIcon,
+    ArrowPathIcon,
     ChatBubbleLeftRightIcon,
-    DocumentCheckIcon,
-    SparklesIcon,
+    ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 
 const trustItems = [
     {
-        icon: SparklesIcon,
+        icon: CheckCircleIcon,
         title: '100% Nguyên chất',
-        description: 'Không pha trộn',
+        description: 'Không tẩy trắng',
     },
     {
-        icon: ClockIcon,
+        icon: TrophyIcon,
         title: '20 năm',
         description: 'Kinh nghiệm',
     },
@@ -26,43 +24,65 @@ const trustItems = [
         description: 'Nhanh chóng',
     },
     {
-        icon: ShieldCheckIcon,
+        icon: ArrowPathIcon,
         title: 'Đổi trả 7 ngày',
-        description: 'Hoàn tiền 100%',
+        description: 'Nếu không hài lòng',
     },
     {
         icon: ChatBubbleLeftRightIcon,
         title: 'Tư vấn miễn phí',
-        description: '24/7 hỗ trợ',
+        description: 'Hỗ trợ 24/7',
     },
     {
-        icon: DocumentCheckIcon,
+        icon: ShieldCheckIcon,
         title: 'Chứng nhận ATTP',
-        description: 'Đạt chuẩn',
+        description: 'Đảm bảo an toàn',
     },
 ];
 
 export default function TrustSignals() {
     return (
-        <section className="py-6 md:py-8" style={{ backgroundColor: '#F5F5DC' }}>
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-                    {trustItems.map((item, index) => (
-                        <div
-                            key={index}
-                            className="flex flex-col items-center text-center p-3 md:p-4"
-                        >
-                            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-2" style={{ backgroundColor: 'rgba(139, 69, 19, 0.1)' }}>
-                                <item.icon className="w-6 h-6 md:w-7 md:h-7" style={{ color: '#8B4513' }} />
+        <section
+            className="py-10"
+            style={{ backgroundColor: '#F5F5DC' }}
+            aria-label="Cam kết của chúng tôi"
+        >
+            <div className="container mx-auto">
+                {/* 12-column grid: 6 items × 2 columns each */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
+                    {trustItems.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                            <div
+                                key={index}
+                                className="flex flex-col items-center text-center p-4"
+                            >
+                                {/* Icon */}
+                                <div
+                                    className="w-12 h-12 flex items-center justify-center mb-3"
+                                    style={{ color: '#8B4513' }}
+                                >
+                                    <Icon className="w-10 h-10" aria-hidden="true" />
+                                </div>
+
+                                {/* Title */}
+                                <h3
+                                    className="text-sm font-bold"
+                                    style={{ color: '#333333' }}
+                                >
+                                    {item.title}
+                                </h3>
+
+                                {/* Description */}
+                                <p
+                                    className="text-xs mt-1"
+                                    style={{ color: '#666666' }}
+                                >
+                                    {item.description}
+                                </p>
                             </div>
-                            <h3 className="font-semibold text-gray-800 text-sm md:text-base">
-                                {item.title}
-                            </h3>
-                            <p className="text-xs md:text-sm text-gray-600 mt-1">
-                                {item.description}
-                            </p>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

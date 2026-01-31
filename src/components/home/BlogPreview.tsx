@@ -1,6 +1,37 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { getPosts, type Post } from '@/lib/api';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { PlaceholderIcon } from '@/components/icons';
+
+// Placeholder blog posts (will be replaced with API data)
+const blogPosts = [
+    {
+        id: 1,
+        slug: '10-cong-dung-tuyet-voi-cua-yen-sao',
+        title: '10 công dụng tuyệt vời của yến sào',
+        excerpt: 'Yến sào là thực phẩm bổ dưỡng cao cấp, được biết đến với nhiều công dụng tuyệt vời cho sức khỏe. Cùng tìm hiểu chi tiết...',
+        category: 'Kiến thức',
+        date: '2026-01-15',
+        image: null,
+    },
+    {
+        id: 2,
+        slug: 'cach-phan-biet-yen-sao-that-gia',
+        title: 'Cách phân biệt yến sào thật giả',
+        excerpt: 'Hướng dẫn chi tiết cách nhận biết yến sào thật và yến sào giả, giúp bạn lựa chọn sản phẩm chất lượng...',
+        category: 'Hướng dẫn',
+        date: '2026-01-10',
+        image: null,
+    },
+    {
+        id: 3,
+        slug: 'yen-sao-cho-ba-bau-nen-an-nhu-the-nao',
+        title: 'Yến sào cho bà bầu - Nên ăn như thế nào?',
+        excerpt: 'Yến sào rất tốt cho bà bầu, nhưng cần sử dụng đúng cách để đảm bảo an toàn và hiệu quả tối đa...',
+        category: 'Sức khỏe',
+        date: '2026-01-05',
+        image: null,
+    },
+];
 
 function formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -11,129 +42,120 @@ function formatDate(dateString: string): string {
     });
 }
 
-async function BlogPosts() {
-    let posts: Post[] = [];
-
-    try {
-        const response = await getPosts({ page: 1 });
-        posts = response.data?.slice(0, 3) || [];
-    } catch {
-        // Return empty if API fails
-    }
-
-    if (posts.length === 0) {
-        return null;
-    }
-
-    return (
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-            {posts.map((post) => (
-                <Link
-                    key={post.id}
-                    href={`/tin-tuc/${post.slug}`}
-                    className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                >
-                    {/* Image */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-amber-50 to-orange-50">
-                        {post.featured_image ? (
-                            <Image
-                                src={post.featured_image}
-                                alt={post.title}
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                        ) : (
-                            <div className="flex items-center justify-center h-full">
-                                <span className="text-5xl opacity-30">📰</span>
-                            </div>
-                        )}
-                        {/* Overlay on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-5">
-                        <time className="text-xs text-gray-500">
-                            {formatDate(post.published_at)}
-                        </time>
-                        <h3 className="font-bold text-gray-800 mt-2 mb-2 line-clamp-2 group-hover:text-amber-600 transition-colors">
-                            {post.title}
-                        </h3>
-                        {post.excerpt && (
-                            <p className="text-sm text-gray-600 line-clamp-2">
-                                {post.excerpt}
-                            </p>
-                        )}
-                        <span
-                            className="inline-flex items-center mt-4 text-sm font-medium transition-colors"
-                            style={{ color: '#8B4513' }}
-                        >
-                            Đọc tiếp
-                            <svg
-                                className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 5l7 7-7 7"
-                                />
-                            </svg>
-                        </span>
-                    </div>
-                </Link>
-            ))}
-        </div>
-    );
-}
-
 export default function BlogPreview() {
     return (
-        <section className="py-16 md:py-20 bg-gray-50">
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between mb-10">
-                    <div>
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">
-                            Tin tức & Kiến thức
-                        </h2>
-                        <p className="text-gray-600 mt-2">
-                            Cập nhật thông tin hữu ích về yến sào
-                        </p>
-                    </div>
+        <section
+            className="py-20 bg-white"
+            aria-labelledby="blog-preview-heading"
+        >
+            <div className="container mx-auto">
+                {/* Section header */}
+                <div className="flex items-center justify-between mb-12">
+                    <h2
+                        id="blog-preview-heading"
+                        className="text-2xl md:text-3xl font-bold font-heading"
+                        style={{ color: '#333333' }}
+                    >
+                        Tin tức & Kiến thức
+                    </h2>
                     <Link
                         href="/tin-tuc"
-                        className="hidden md:inline-flex items-center font-medium hover:underline"
+                        className="hidden md:inline-flex items-center font-medium transition-colors duration-normal cursor-pointer hover:underline"
                         style={{ color: '#8B4513' }}
                     >
                         Xem tất cả
-                        <svg
-                            className="w-5 h-5 ml-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
+                        <ArrowRightIcon className="w-4 h-4 ml-1" aria-hidden="true" />
                     </Link>
                 </div>
 
-                <BlogPosts />
+                {/* 12-column grid: 3 posts × 4 columns each */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    {blogPosts.map((post) => (
+                        <article
+                            key={post.id}
+                            className="group card overflow-hidden"
+                        >
+                            {/* Image - 16:9 aspect ratio */}
+                            <div
+                                className="relative aspect-video overflow-hidden"
+                                style={{ backgroundColor: '#F5F5DC' }}
+                            >
+                                {post.image ? (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
+                                        src={post.image}
+                                        alt={post.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                                    />
+                                ) : (
+                                    <div className="flex items-center justify-center h-full">
+                                        <PlaceholderIcon className="w-16 h-16 text-text-muted opacity-30" />
+                                    </div>
+                                )}
 
+                                {/* Category badge */}
+                                <span
+                                    className="absolute top-3 left-3 px-3 py-1 text-xs font-medium rounded-full"
+                                    style={{
+                                        backgroundColor: '#F5F5DC',
+                                        color: '#8B4513',
+                                    }}
+                                >
+                                    {post.category}
+                                </span>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-6">
+                                {/* Title */}
+                                <h3 className="font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-normal">
+                                    <Link
+                                        href={`/tin-tuc/${post.slug}`}
+                                        className="cursor-pointer"
+                                    >
+                                        {post.title}
+                                    </Link>
+                                </h3>
+
+                                {/* Excerpt */}
+                                <p
+                                    className="text-sm mb-4 line-clamp-3"
+                                    style={{ color: '#666666' }}
+                                >
+                                    {post.excerpt}
+                                </p>
+
+                                {/* Footer */}
+                                <div className="flex items-center justify-between">
+                                    <Link
+                                        href={`/tin-tuc/${post.slug}`}
+                                        className="inline-flex items-center text-sm font-medium transition-colors duration-normal cursor-pointer"
+                                        style={{ color: '#8B4513' }}
+                                    >
+                                        Đọc tiếp
+                                        <ArrowRightIcon className="w-4 h-4 ml-1" aria-hidden="true" />
+                                    </Link>
+                                    <span
+                                        className="text-xs"
+                                        style={{ color: '#999999' }}
+                                    >
+                                        {formatDate(post.date)}
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+
+                {/* Mobile: View all link */}
                 <div className="text-center mt-8 md:hidden">
                     <Link
                         href="/tin-tuc"
-                        className="inline-flex items-center font-medium"
+                        className="inline-flex items-center font-medium cursor-pointer"
                         style={{ color: '#8B4513' }}
                     >
-                        Xem tất cả bài viết →
+                        Xem tất cả bài viết
+                        <ArrowRightIcon className="w-4 h-4 ml-1" aria-hidden="true" />
                     </Link>
                 </div>
             </div>
