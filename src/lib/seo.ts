@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
-const siteName = 'Yến Sào Hòn Nội';
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yensaohonnoi.vn';
-const defaultDescription = 'Chuyên cung cấp yến sào cao cấp 100% nguyên chất từ đảo Hòn Nội, Khánh Hòa. Cam kết chất lượng, nguồn gốc rõ ràng.';
+const siteName = 'Yến Sào Ban Mê';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yensaobanme.vn';
+const defaultDescription = 'Chuyên cung cấp yến sào nguyên chất cao cấp tại Buôn Ma Thuột, Đắk Lắk. 20 năm kinh nghiệm, quy trình thủ công 100%.';
 
 interface SEOConfig {
     title?: string;
@@ -32,12 +32,14 @@ export function generateSEO({
 
     const defaultKeywords = [
         'yến sào',
-        'yến sào khánh hòa',
+        'yến sào Buôn Ma Thuột',
+        'yến sào Đắk Lắk',
         'tổ yến',
         'yến chưng',
         'yến sào cao cấp',
-        'yến sào hòn nội',
+        'yến sào Ban Mê',
         'yến sào nguyên chất',
+        'mua yến sào',
     ];
 
     return {
@@ -99,26 +101,59 @@ export function generateOrganizationSchema() {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: siteName,
+        alternateName: 'Yen Sao Ban Me',
         url: siteUrl,
-        logo: `${siteUrl}/logo.png`,
+        logo: {
+            '@type': 'ImageObject',
+            url: `${siteUrl}/logo.png`,
+            width: 250,
+            height: 250,
+        },
         description: defaultDescription,
         address: {
             '@type': 'PostalAddress',
-            streetAddress: '123 Đường Trần Phú',
-            addressLocality: 'Nha Trang',
-            addressRegion: 'Khánh Hòa',
-            postalCode: '650000',
+            streetAddress: '431 Phan Bội Châu, Thành Nhất',
+            addressLocality: 'Buôn Ma Thuột',
+            addressRegion: 'Đắk Lắk',
+            postalCode: '630000',
             addressCountry: 'VN',
+        },
+        geo: {
+            '@type': 'GeoCoordinates',
+            latitude: 12.6676,
+            longitude: 108.0371,
         },
         contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+84909123456',
+            telephone: '+84-355-246-245',
             contactType: 'customer service',
             availableLanguage: ['Vietnamese'],
+            areaServed: 'VN',
         },
+        email: 'info@yensaobanme.vn',
         sameAs: [
-            'https://facebook.com/yensaohonnoi',
-            'https://instagram.com/yensaohonnoi',
+            'https://facebook.com/yensaobanme',
+            'https://zalo.me/0355246245',
+        ],
+        aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5',
+            reviewCount: '150',
+        },
+        priceRange: '₫₫₫',
+        openingHoursSpecification: [
+            {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                opens: '08:00',
+                closes: '20:00',
+            },
+            {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: 'Sunday',
+                opens: '08:00',
+                closes: '18:00',
+            },
         ],
     };
 }

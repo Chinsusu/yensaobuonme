@@ -19,44 +19,44 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yensaohonnoi.vn';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yensaobanme.vn';
 
 export const metadata: Metadata = {
   title: {
-    default: "Yến Sào Hòn Nội - Tổ Yến Nguyên Chất 100% Tự Nhiên",
-    template: "%s | Yến Sào Hòn Nội",
+    default: "Yến Sào Ban Mê - Tổ Yến Nguyên Chất 100% Tại Buôn Ma Thuột",
+    template: "%s | Yến Sào Ban Mê",
   },
-  description: "Yến sào nguyên chất từ Hòn Nội, Khánh Hòa. 20 năm uy tín, thủ công 100%, không hóa chất. Giá từ 48k. Giao toàn quốc.",
+  description: "Yến sào nguyên chất cao cấp tại Buôn Ma Thuột, Đắk Lắk. 20 năm uy tín, thủ công 100%, không hóa chất. Giá từ 48.000đ. Giao toàn quốc. Hotline: 0355.246.245",
   keywords: [
     "yến sào",
-    "yến sào khánh hòa",
+    "yến sào Buôn Ma Thuột",
+    "yến sào Đắk Lắk",
     "tổ yến",
     "yến chưng",
     "yến sào cao cấp",
-    "yến sào hòn nội",
+    "yến sào Ban Mê",
     "yến sào nguyên chất",
-    "yến sào đắk lắk",
     "mua yến sào",
     "yến sào giá tốt"
   ],
-  authors: [{ name: "Yến Sào Hòn Nội" }],
-  creator: "Yến Sào Hòn Nội",
-  publisher: "Yến Sào Hòn Nội",
+  authors: [{ name: "Yến Sào Ban Mê" }],
+  creator: "Yến Sào Ban Mê",
+  publisher: "Yến Sào Ban Mê",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Yến Sào Hòn Nội - Tổ Yến Nguyên Chất 100% Tự Nhiên",
-    description: "Yến sào nguyên chất từ Hòn Nội, Khánh Hòa. 20 năm uy tín, thủ công 100%, không hóa chất.",
+    title: "Yến Sào Ban Mê - Tổ Yến Nguyên Chất 100% Tại Buôn Ma Thuột",
+    description: "Yến sào nguyên chất cao cấp tại Buôn Ma Thuột. 20 năm uy tín, thủ công 100%, không hóa chất.",
     url: siteUrl,
-    siteName: "Yến Sào Hòn Nội",
+    siteName: "Yến Sào Ban Mê",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Yến Sào Hòn Nội - Tổ Yến Nguyên Chất",
+        alt: "Yến Sào Ban Mê - Tổ Yến Nguyên Chất Buôn Ma Thuột",
       },
     ],
     locale: "vi_VN",
@@ -64,8 +64,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yến Sào Hòn Nội - Tổ Yến Nguyên Chất 100% Tự Nhiên",
-    description: "Yến sào nguyên chất từ Hòn Nội, Khánh Hòa. 20 năm uy tín.",
+    title: "Yến Sào Ban Mê - Tổ Yến Nguyên Chất 100% Tại Buôn Ma Thuột",
+    description: "Yến sào nguyên chất tại Buôn Ma Thuột. 20 năm uy tín.",
     images: ["/og-image.jpg"],
   },
   robots: {

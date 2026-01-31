@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import {
     ShoppingCartIcon,
@@ -49,19 +50,22 @@ export default function Header() {
                         <Link
                             href="/"
                             className="flex items-center space-x-2 cursor-pointer"
-                            aria-label="Trang chủ Yến Sào Hòn Nội"
+                            aria-label="Trang chủ Yến Sào Ban Mê"
                         >
-                            <div
-                                className="w-10 h-10 rounded-full flex items-center justify-center"
-                                style={{ backgroundColor: '#8B4513' }}
-                            >
-                                <span className="text-white text-xl font-bold font-heading">Y</span>
-                            </div>
+                            {/* Logo image */}
+                            <Image
+                                src="/logo.png"
+                                alt="Yến Sào Ban Mê Logo"
+                                width={50}
+                                height={50}
+                                className="w-10 h-10 lg:w-12 lg:h-12"
+                                priority
+                            />
                             <div className="hidden sm:block">
-                                <h1 className="text-lg font-bold font-heading" style={{ color: '#8B4513' }}>
-                                    Yến Sào
+                                <h1 className="text-base lg:text-lg font-bold font-heading" style={{ color: '#8B4513' }}>
+                                    Yến Sào Ban Mê
                                 </h1>
-                                <p className="text-xs" style={{ color: '#D4AF37' }}>Hòn Nội</p>
+                                <p className="text-xs" style={{ color: '#D4AF37' }}>Buôn Ma Thuột</p>
                             </div>
                         </Link>
                     </div>

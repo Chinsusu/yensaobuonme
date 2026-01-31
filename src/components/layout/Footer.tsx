@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     MapPinIcon,
     PhoneIcon,
@@ -32,29 +33,30 @@ export default function Footer() {
                     {/* Column 1: About - 3 columns */}
                     <div className="lg:col-span-3 space-y-4">
                         {/* Logo */}
-                        <div className="flex items-center space-x-2">
-                            <div
-                                className="w-10 h-10 rounded-full flex items-center justify-center"
-                                style={{ backgroundColor: '#8B4513' }}
-                            >
-                                <span className="text-white text-xl font-bold font-heading">Y</span>
-                            </div>
+                        <Link href="/" className="flex items-center space-x-2">
+                            <Image
+                                src="/logo.png"
+                                alt="Yến Sào Ban Mê Logo"
+                                width={50}
+                                height={50}
+                                className="w-10 h-10"
+                            />
                             <div>
-                                <h2 className="text-lg font-bold font-heading text-white">Yến Sào</h2>
-                                <p className="text-xs" style={{ color: '#D4AF37' }}>Hòn Nội</p>
+                                <h2 className="text-lg font-bold font-heading text-white">Yến Sào Ban Mê</h2>
+                                <p className="text-xs" style={{ color: '#D4AF37' }}>Buôn Ma Thuột</p>
                             </div>
-                        </div>
+                        </Link>
 
                         {/* Description */}
                         <p className="text-sm leading-relaxed" style={{ color: '#E5E5E5' }}>
-                            Chuyên cung cấp yến sào cao cấp 100% nguyên chất từ đảo Hòn Nội, Khánh Hòa.
+                            Chuyên cung cấp yến sào cao cấp 100% nguyên chất tại Buôn Ma Thuột, Đắk Lắk.
                             Cam kết chất lượng, nguồn gốc rõ ràng. 20 năm kinh nghiệm.
                         </p>
 
                         {/* Social icons */}
                         <div className="flex space-x-3">
                             <a
-                                href="https://facebook.com"
+                                href="https://facebook.com/yensaobanme"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-normal cursor-pointer"
@@ -66,7 +68,7 @@ export default function Footer() {
                                 </svg>
                             </a>
                             <a
-                                href="https://zalo.me/0901234567"
+                                href="https://zalo.me/0355246245"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-normal cursor-pointer"
@@ -78,7 +80,7 @@ export default function Footer() {
                                 </svg>
                             </a>
                             <a
-                                href="https://instagram.com"
+                                href="https://instagram.com/yensaobanme"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-normal cursor-pointer"
@@ -134,29 +136,29 @@ export default function Footer() {
                         <ul className="space-y-3 text-sm" style={{ color: '#E5E5E5' }}>
                             <li className="flex items-start space-x-3">
                                 <MapPinIcon className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D4AF37' }} />
-                                <span>123 Đường Trần Phú, TP. Nha Trang, Khánh Hòa</span>
+                                <span>431 Phan Bội Châu, Thành Nhất<br />Buôn Ma Thuột, Đắk Lắk</span>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <PhoneIcon className="w-5 h-5 flex-shrink-0" style={{ color: '#D4AF37' }} />
                                 <a
-                                    href="tel:0901234567"
+                                    href="tel:0355246245"
                                     className="hover:text-white transition-colors duration-normal cursor-pointer"
                                 >
-                                    0901.234.567
+                                    0355.246.245
                                 </a>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <EnvelopeIcon className="w-5 h-5 flex-shrink-0" style={{ color: '#D4AF37' }} />
                                 <a
-                                    href="mailto:info@yensaohonnoi.vn"
+                                    href="mailto:info@yensaobanme.vn"
                                     className="hover:text-white transition-colors duration-normal cursor-pointer"
                                 >
-                                    info@yensaohonnoi.vn
+                                    info@yensaobanme.vn
                                 </a>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <ClockIcon className="w-5 h-5 flex-shrink-0" style={{ color: '#D4AF37' }} />
-                                <span>8:00 - 21:00 (Thứ 2 - CN)</span>
+                                <span>8:00 - 20:00 (Thứ 2 - CN)</span>
                             </li>
                         </ul>
                     </div>
@@ -167,7 +169,7 @@ export default function Footer() {
             <div style={{ borderTop: '1px solid #3F3F46' }}>
                 <div className="container mx-auto py-6">
                     <p className="text-center text-sm" style={{ color: '#999999' }}>
-                        © 2026 Yến Sào Hòn Nội. All rights reserved.
+                        © 2026 Yến Sào Ban Mê. All rights reserved.
                     </p>
                 </div>
             </div>

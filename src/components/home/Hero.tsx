@@ -7,7 +7,7 @@ export default function Hero() {
         <section
             className="relative overflow-hidden"
             style={{ minHeight: '600px' }}
-            aria-label="Giới thiệu Yến Sào Hòn Nội"
+            aria-label="Giới thiệu Yến Sào Ban Mê"
         >
             {/* Background */}
             <div
@@ -26,7 +26,7 @@ export default function Hero() {
                             className="font-heading font-bold leading-tight"
                             style={{ color: '#8B4513' }}
                         >
-                            Yến Sào Hòn Nội
+                            Yến Sào Ban Mê
                         </h1>
 
                         {/* Subtitle */}
@@ -68,11 +68,11 @@ export default function Hero() {
                                 Xem sản phẩm
                             </Link>
                             <a
-                                href="tel:0901234567"
+                                href="tel:0355246245"
                                 className="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
                             >
                                 <PhoneIcon className="w-5 h-5" aria-hidden="true" />
-                                Hotline: 0901234567
+                                Hotline: 0355.246.245
                             </a>
                         </div>
                     </div>
@@ -95,16 +95,16 @@ export default function Hero() {
 
                             {/* When you add real image, use this: */}
                             {/* 
-              <Image
-                src="/images/hero-bird-nest.webp"
-                alt="Tổ yến nguyên chất Hòn Nội trong bát gỗ"
-                fill
-                className="object-cover rounded-lg"
-                priority  // CRITICAL: Eager load for LCP optimization
-                quality={90}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              */}
+                            <Image
+                                src="/images/hero-bird-nest.webp"
+                                alt="Tổ yến nguyên chất Yến Sào Ban Mê tại Buôn Ma Thuột"
+                                fill
+                                className="object-cover rounded-lg"
+                                priority  // CRITICAL: Eager load for LCP optimization
+                                quality={90}
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            */}
                         </div>
                     </div>
                 </div>

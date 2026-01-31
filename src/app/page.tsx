@@ -214,7 +214,7 @@ export default async function HomePage() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:0901234567"
+              href="tel:0355246245"
               className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg transition-all duration-normal cursor-pointer gap-2"
               style={{
                 backgroundColor: 'white',
@@ -222,10 +222,10 @@ export default async function HomePage() {
               }}
             >
               <PhoneIcon className="w-5 h-5" aria-hidden="true" />
-              Hotline: 0901234567
+              Hotline: 0355.246.245
             </a>
             <a
-              href="https://zalo.me/0901234567"
+              href="https://zalo.me/0355246245"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg transition-all duration-normal cursor-pointer border-2 border-white text-white hover:bg-white/10"
