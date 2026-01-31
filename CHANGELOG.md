@@ -30,6 +30,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product descriptions
 - Performance optimization
 
+## [0.5.0] - 2026-01-31 (Phase 4 - SEO)
+
+### Added
+- SEO utilities (lib/seo.ts) với generateSEO metadata function
+- Schema.org JSON-LD generators (Organization, Website, Product, Article, Breadcrumb)
+- JsonLd component cho structured data embedding
+- Dynamic sitemap.ts với auto-fetch products/posts
+- robots.txt configuration
+- Enhanced root layout với full metadata, viewport, icons
+- Product detail với Product + Breadcrumb Schema.org markup
+- Twitter Card và Open Graph meta tags
+- Canonical URLs và metadataBase
+
 ## [0.4.0] - 2026-01-31 (Phase 3 - Frontend)
 
 ### Added
