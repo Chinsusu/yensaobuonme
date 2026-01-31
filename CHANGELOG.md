@@ -30,6 +30,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product descriptions
 - Performance optimization
 
+## [0.6.0] - 2026-01-31 (Phase 5 - Deployment)
+
+### Added
+- Cloudflare Tunnel integration for HTTPS
+- Apache virtual host configuration (reverse proxy)
+- PM2 ecosystem config với clustering (4 instances)
+- deploy.sh deployment script
+- Docker container cho cloudflared
+- Production environment configs
+
+### Infrastructure
+- Domain: yensaodaklak.vn (live)
+- Apache + PHP-FPM for Laravel API
+- PM2 cluster for Next.js frontend
+- Cloudflare CDN + SSL + DDoS protection
+
 ## [0.5.0] - 2026-01-31 (Phase 4 - SEO & Optimization)
 
 ### Added
