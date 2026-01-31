@@ -20,54 +20,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Static pages (About, Contact, etc.)
 - Mobile responsive design
 
-## [0.5.0] - TBD (Week 4)
+## [0.5.0] - 2026-01-31 (Phase 4 - Testing & Bug Fixes)
 
 ### Added
 - SEO meta tags on all pages
 - Auto-generated sitemap
-- Schema.org markup
-- Blog content (15+ posts)
-- Product descriptions
-- Performance optimization
+- Schema.org markup (Product, Article, BreadcrumbList)
+- Blog content (15 SEO-optimized posts)
+- Product descriptions (8 products with detailed HTML)
+- Policy pages content (7 pages)
+- `useCart` hook with localStorage persistence for cart state
+- `AddToCartButton` client component
 
-## [0.6.0] - 2026-01-31 (Phase 5 - Deployment)
+### Fixed
+- **Cart counter bug**: Header cart counter now updates dynamically when items are added/removed
+- **Filament admin assets 404**: Added Apache Location blocks for `/js`, `/css`, `/vendor`, `/build`
+- **HTTPS Mixed Content**: Updated `APP_URL` to HTTPS and configured TrustedProxy for Cloudflare
 
-### Added
-- Cloudflare Tunnel integration for HTTPS
-- Apache virtual host configuration (reverse proxy)
-- PM2 ecosystem config với clustering (4 instances)
-- deploy.sh deployment script
-- Docker container cho cloudflared
-- Production environment configs
-
-### Infrastructure
-- Domain: yensaodaklak.vn (live)
-- Apache + PHP-FPM for Laravel API
-- PM2 cluster for Next.js frontend
-- Cloudflare CDN + SSL + DDoS protection
-
-## [0.5.0] - 2026-01-31 (Phase 4 - SEO & Optimization)
-
-### Added
-- SEO utilities (lib/seo.ts) với generateSEO metadata function
-- Schema.org JSON-LD generators (Organization, Website, Product, Article, Breadcrumb)
-- JsonLd component cho structured data embedding
-- Dynamic sitemap.ts với auto-fetch products/posts
-- robots.txt configuration
-- Enhanced root layout với full metadata, viewport, icons
-- Product detail với Product + Breadcrumb Schema.org markup
-- Twitter Card và Open Graph meta tags
-- Canonical URLs và metadataBase
-- next.config.mjs với image optimization (WebP, AVIF)
-- Cache headers cho static assets (1 year immutable)
-- Security headers (X-Frame-Options, X-XSS-Protection, X-Content-Type-Options)
-- OptimizedImage component với lazy loading, fallback state
-- LazyLoad component với Intersection Observer
-- ScrollToTop button
-- loading.tsx global loading spinner
-- error.tsx error boundary
-- not-found.tsx custom 404 page
-- SEO redirects cho legacy URLs
+### Changed
+- Cart page now uses shared cart state instead of mock data
+- Apache config optimized for Laravel + Next.js reverse proxy
 
 ## [0.4.0] - 2026-01-31 (Phase 3 - Frontend)
 
@@ -80,19 +52,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product detail page with gallery, pricing, add to cart
 - Cart page with quantity controls, free shipping progress
 - Checkout page with customer form, address, payment method
-- Order success confirmation page
-- Blog listing with featured post layout
-- Blog detail with tags, share buttons
-- About page with story, values, stats, team sections
-- Contact page with form, info, map placeholder
-- Dynamic static pages (policies, shipping, payment guides)
 - Header component (navigation, search, cart, mobile menu)
 - Footer component (newsletter, links, contact)
-- ProductCard, SortSelect components
+- ProductCard component with hover effects, badges
 - Premium amber/gold theme design
 - Responsive mobile-first design
 - SEO metadata configuration
-- **Total: 11 routes, 15+ components**
 
 ## [0.3.0] - 2026-01-31 (Phase 2 - API)
 
