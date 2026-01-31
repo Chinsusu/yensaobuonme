@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product descriptions
 - Performance optimization
 
-## [0.5.0] - 2026-01-31 (Phase 4 - SEO)
+## [0.5.0] - 2026-01-31 (Phase 4 - SEO & Optimization)
 
 ### Added
 - SEO utilities (lib/seo.ts) với generateSEO metadata function
@@ -42,6 +42,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product detail với Product + Breadcrumb Schema.org markup
 - Twitter Card và Open Graph meta tags
 - Canonical URLs và metadataBase
+- next.config.mjs với image optimization (WebP, AVIF)
+- Cache headers cho static assets (1 year immutable)
+- Security headers (X-Frame-Options, X-XSS-Protection, X-Content-Type-Options)
+- OptimizedImage component với lazy loading, fallback state
+- LazyLoad component với Intersection Observer
+- ScrollToTop button
+- loading.tsx global loading spinner
+- error.tsx error boundary
+- not-found.tsx custom 404 page
+- SEO redirects cho legacy URLs
 
 ## [0.4.0] - 2026-01-31 (Phase 3 - Frontend)
 
